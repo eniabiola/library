@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TodoController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\API\Auth\AuthController;
 
@@ -23,10 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('login', [AuthController::class, 'signin'])->middleware();
 Route::resource("books", BookController::class);
-Route::group(["prefix"=>"todo"],function(){
-    Route::get("/get/{id}",[TodoController::class,"get"]);
-    Route::get("/gets",[TodoController::class,"gets"]);
-    Route::post("/store",[TodoController::class,"store"]);
-    Route::put("/update/{id}",[TodoController::class,"update"]);
-    Route::delete("/delete/{id}",[TodoController::class,"delete"]);
-});
+

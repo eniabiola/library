@@ -2,10 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Models\Book;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BookFactory extends Factory
 {
+    protected $model = Book::class;
+
     /**
      * Define the model's default state.
      *
@@ -14,7 +18,9 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            //
+                'title' => $this->faker->text(10),
+                'description' => $this->faker->text(200),
+                'publisher_id' => \App\Models\Publisher::query()->inRandomOrder()->first()->id
         ];
     }
 }
